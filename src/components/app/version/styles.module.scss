@@ -1,0 +1,18 @@
+@import 'styles/variables';
+
+.version {
+  margin: $default-spacing auto;
+  text-align: center;
+  font-size: $xsmall-font-size;
+}
+
+.updateAvailabel {
+  background-color: $color-secondary;
+  margin-top: $default-spacing;
+  border-radius: $default-border-radius;
+  padding: $default-spacing;
+
+  h2 {
+    margin-top: 0;
+  }
+}

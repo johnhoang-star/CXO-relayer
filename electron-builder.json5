@@ -1,0 +1,58 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  appId: 'cxo-relay',
+  productName: 'CXO Relay',
+  copyright: 'Copyright © 2022 ${author}',
+  asar: true,
+  directories: {
+    output: 'release/${version}',
+    buildResources: 'electron/resources'
+  },
+  "afterSign": "scripts/notarize.js",
+  files: ['dist'],
+  win: {
+    target: [
+      {
+        target: 'nsis',
+        arch: ['x64']
+      }
+    ],
+    artifactName: '${productName}-Windows-${version}-Setup.${ext}'
+  },
+  nsis: {
+    oneClick: false,
+    perMachine: false,
+    allowToChangeInstallationDirectory: true,
+    deleteAppDataOnUninstall: false
+  },
+  mac: {
+    "hardenedRuntime": true,
+    artifactName: '${productName}-Mac-${arch}-${version}-Installer.${ext}',
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
+    ]
+
+  },
+  linux: {
+  "target": [
+    {
+      "target": "AppImage",
+      "arch": [
+        "x64",
+        "arm64"
+      ]
+    }
+  ],
+    artifactName: '${productName}-Linux-${arch}-${version}.${ext}'
+  }
+}
